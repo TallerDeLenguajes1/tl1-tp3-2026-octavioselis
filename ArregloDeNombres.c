@@ -24,15 +24,41 @@ int main(){
     }
     MostrarPersonas(nombres,5);
 
+    // --- INICIO DEL MENÚ DE BÚSQUEDA ---
+    int opcion;
     int buscado;
-    printf("Busque un nombre mediante su ID: \n");
-    scanf("%d",&buscado);
-    BuscarNombre(nombres, buscado);
+    char clave_buscada[50];
 
-    char * nombre_con_clave= BuscarNombreClave(nombres,5,"jose");
+    printf("\n--- MENU DE BUSQUEDA ---\n");
+    printf("1. Buscar por ID\n");
+    printf("2. Buscar por Palabra Clave\n");
+    printf("Elija una opcion (1 o 2): ");
+    scanf("%d", &opcion);
 
-    printf("Nombre buscado con clave: %s\n", nombre_con_clave);
+    switch(opcion) {
+        case 1:
+            printf("\nIngrese el ID (indice del 0 al 4): ");
+            scanf("%d", &buscado);
+            BuscarNombre(nombres, buscado);
+        break;
 
+        case 2:
+            printf("\nIngrese la palabra clave: ");
+            scanf("%s", clave_buscada); 
+            
+            char *nombre_con_clave = BuscarNombreClave(nombres, 5, clave_buscada);
+            
+            if (strcmp(nombre_con_clave, "-1") == 0) {
+                printf("No se encontro ningun nombre con esa palabra clave.\n");
+            } else {
+                printf("Nombre encontrado: %s\n", nombre_con_clave);
+            }
+        break;
+
+        default:
+            printf("\nOpcion no valida.\n");
+        break;
+    }
     for(int i=0;i<5;i++){
         free(nombres[i]);
     }
