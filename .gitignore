@@ -2,3 +2,4 @@
 *.obj
 *.tds
 .vscode/
+a.out
