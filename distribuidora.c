@@ -26,6 +26,11 @@ int main(){
     Cliente *Clientes;
 
     srand(time(NULL));
+    do{
+        printf("Ingrese la cantidad de clientes: ");
+        scanf("%d",&cantClientes);
+    }while(cantClientes > 5 || cantClientes <= 0);
+    
     Clientes = (Cliente*)malloc(cantClientes*(sizeof(Cliente)));
 
     printf("\nCARGAR LOS DATOS DE LOS CLIENTES: \n");
